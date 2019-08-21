@@ -13,17 +13,15 @@ Each student will need to SSH into their "control" machine using the host IP, us
 From that control machine:
 
 ```bash
-sudo pip install ansible
 sudo yum install -y ansible
 
-ansible --verison
+ansible --version
 
 ansible --help
 
 mkdir -p ~/.ansible/retry-files
 vi ~/.ansible.cfg
 # add forks and retry_files_save_path
-
 
 ```
 

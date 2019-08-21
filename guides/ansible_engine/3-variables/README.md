@@ -48,6 +48,7 @@ Add a play definition and some variables to your playbook.  These include addtio
       - mod_wsgi
     apache_test_message: This is a test message
     apache_max_keep_alive_requests: 115
+    apache_webserver_port: 80
 ```
 
 ### Step 3
@@ -154,8 +155,9 @@ handlers:
 
 > A handler is only executed when it is triggered by a task.
 
-* `handler:` This is telling the *play* that the `tasks:` are over, and now we are defining `handlers:`. Everything below that looks the same as any other task, i.e. you give it a name, a module, and the options for that module.  This is the definition of a handler.
+* `handlers:` This is telling the *play* that the `tasks:` are over, and now we are defining `handlers:`. Everything below that looks the same as any other task, i.e. you give it a name, a module, and the options for that module.  This is the definition of a handler.
 * `notify: restart-apache-service` This triggers the handler as mentioned above. The `nofify` statement is the invocation of a handler by name. In the above created playbook, a `notify` statement was already added to the `latest httpd.conf is present` task.
+* naming of handlers: We do recommend to name handlers in a consistent way. A tested and proven method is to name all handlers in lower case and with dashes instead of spaces.
 
 ---
 
@@ -175,6 +177,7 @@ Your new, improved playbook is done! Let's take a second look to make sure every
       - mod_wsgi
     apache_test_message: This is a test message
     apache_max_keep_alive_requests: 115
+    apache_webserver_port: 80
 
   tasks:
     - name: Ensure httpd packages are present
@@ -233,7 +236,7 @@ cd ~/apache-basic-playbook
 Run your playbook
 
 ```bash
-ansible-playbook -i ./inventory.ini site.yml
+ansible-playbook site.yml
 ```
 
 ## Section 2: Review
@@ -244,4 +247,4 @@ If successful, you should see standard output that looks very similar to the fol
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Guide](../README.md)
